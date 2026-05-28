@@ -106,12 +106,17 @@ CREATE TABLE tbl_autor (
     )
 ;
 
+
+-- --------------------------------------------------------
+-- 1. Exibe o nome do autor e o nome por extenso do seu sexo
+-- --------------------------------------------------------
 SELECT 
     tbl_autor.nome   AS autor,
     tbl_sexo.nome    AS sexo
 FROM tbl_autor
-INNER JOIN tbl_sexo
-    ON tbl_autor.id_sexo = tbl_sexo.id;
+	INNER JOIN tbl_sexo
+		ON tbl_autor.id_sexo = tbl_sexo.id
+    ;
 
 
 -- -----------------------------------------------------
@@ -203,3 +208,17 @@ CREATE TABLE tbl_autor_nacionalidade (
     REFERENCES tbl_nacionalidade (id)
     )
 ;
+
+-- -----------------------------------------------------------
+-- 2. Retorna o nome do autor e a sua respectiva nacionalidade
+-- -----------------------------------------------------------
+select 
+	tbl_autor.nome as autor,
+    tbl_nacionalidade.nome as nacionalidade
+    
+from tbl_autor
+	inner join tbl_autor_nacionalidade
+		on tbl_autor.id = tbl_autor_nacionalidade.id_autor
+	inner join tbl_nacionalidade
+		on tbl_autor_nacionalidade.id_nacionalidade = tbl_nacionalidade.id
+        ;
