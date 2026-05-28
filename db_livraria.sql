@@ -106,6 +106,13 @@ CREATE TABLE tbl_autor (
     )
 ;
 
+SELECT 
+    tbl_autor.nome   AS autor,
+    tbl_sexo.nome    AS sexo
+FROM tbl_autor
+INNER JOIN tbl_sexo
+    ON tbl_autor.id_sexo = tbl_sexo.id;
+
 
 -- -----------------------------------------------------
 -- Table tbl_livro_autor
