@@ -116,7 +116,35 @@ SELECT
 FROM tbl_autor
 	INNER JOIN tbl_sexo
 		ON tbl_autor.id_sexo = tbl_sexo.id
-    ;
+	;
+
+-- -----------------------------------------------------------
+-- 2. Retorna o nome do autor e a sua respectiva nacionalidade
+-- -----------------------------------------------------------
+select 
+	tbl_autor.nome as autor,
+    tbl_nacionalidade.nome as nacionalidade
+from tbl_autor
+	inner join tbl_autor_nacionalidade
+		on tbl_autor.id = tbl_autor_nacionalidade.id_autor
+	inner join tbl_nacionalidade
+		on tbl_autor_nacionalidade.id_nacionalidade = tbl_nacionalidade.id
+	;
+        
+-- ------------------------------------------------------------------
+-- 3. Lista o nome de todos os autores e, ao lado, o título do livro. 
+-- Caso o autor não tenha livro, o título aparece como NULL
+-- ------------------------------------------------------------------
+select 
+	tbl_autor.nome as nome,
+    tbl_livro.titulo as título_livro
+from tbl_autor
+	left join tbl_livro
+		on tbl_autor.id = tbl_livro.id
+	;
+    
+
+
 
 
 -- -----------------------------------------------------
@@ -208,17 +236,3 @@ CREATE TABLE tbl_autor_nacionalidade (
     REFERENCES tbl_nacionalidade (id)
     )
 ;
-
--- -----------------------------------------------------------
--- 2. Retorna o nome do autor e a sua respectiva nacionalidade
--- -----------------------------------------------------------
-select 
-	tbl_autor.nome as autor,
-    tbl_nacionalidade.nome as nacionalidade
-    
-from tbl_autor
-	inner join tbl_autor_nacionalidade
-		on tbl_autor.id = tbl_autor_nacionalidade.id_autor
-	inner join tbl_nacionalidade
-		on tbl_autor_nacionalidade.id_nacionalidade = tbl_nacionalidade.id
-        ;
